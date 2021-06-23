@@ -77,6 +77,9 @@ body {
       &.numberInput{
           width: calc( 100% - 120px );
       }
+      &[data-error=true]{
+        border-color: red;
+      }
       i{
           position: absolute;
           z-index: 1;

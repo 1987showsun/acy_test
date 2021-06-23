@@ -17,6 +17,7 @@ const Form = ({
     token = ""
 }) => {
 
+    const [ stateCheckRequired, setCheckRequired ] = useState([]);
     const [ stateForm, setForm ] = useState({ 
         email: "",
         password: ""
@@ -29,7 +30,12 @@ const Form = ({
 
     const handleSubmit = e => {
         e.preventDefault();
-        dispatch( signInAction({ data: stateForm }) );
+        const required = ['email','password'];
+        const checkRequired = required.filter( item => stateForm[item].trim()=="" );
+        setCheckRequired(checkRequired);
+        if( checkRequired.length==0 ){
+            dispatch( signInAction({ data: stateForm }) );
+        }
     }
 
     useEffect(() => {
@@ -46,13 +52,13 @@ const Form = ({
                 <form onSubmit={handleSubmit.bind(this)}>
                     <div className="form-item">
                         <label>Username:</label>
-                        <div className="input-box">
-                            <input type="text" name="email" value={email} onChange={handleChange.bind(this)} />
+                        <div className="input-box" data-error={stateCheckRequired.includes('email')}>
+                            <input type="text" name="email" value={email} onChange={handleChange.bind(this)}/>
                         </div>
                     </div>
                     <div className="form-item">
                         <label>Password:</label>
-                        <div className="input-box">
+                        <div className="input-box" data-error={stateCheckRequired.includes('password')}>
                             <input type="password" name="password" value={password} onChange={handleChange.bind(this)} />
                         </div>
                     </div>
