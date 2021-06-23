@@ -11,7 +11,7 @@ export const signInAction = ({method='post', query={}, data={}}) => {
         const initQuery = {};
         const search = queryString.stringify({ ...initQuery, ...query });
         const url = `${API_URL().sign_in}${search==""? "":`?${search}`}`;
-        axios({method, url, data}).then( res => {
+        return axios({method, url, data}).then( res => {
             const { token="", user={} } = res.data;
             sessionStorage.setItem('token', token);
             sessionStorage.setItem('author', JSON.stringify(user));
@@ -20,14 +20,14 @@ export const signInAction = ({method='post', query={}, data={}}) => {
                 token: token,
                 payload: user
             })
-        });
+            return res;
+        }).catch( err => err.response );
 
     }
 }
 
 export const signOutAction = ({method='post', query={}, data={}}) => {
     return(dispatch) => {
-        console.log('signOutAction');
         const initQuery = {};
         const search = queryString.stringify({ ...initQuery, ...query });
         const url = `${API_URL().sign_out}${search==""? "":`?${search}`}`;

@@ -17,6 +17,7 @@ const Form = ({
     token = ""
 }) => {
 
+    const [ stateMsg, setMsg ] = useState("");
     const [ stateCheckRequired, setCheckRequired ] = useState([]);
     const [ stateForm, setForm ] = useState({ 
         email: "",
@@ -34,7 +35,16 @@ const Form = ({
         const checkRequired = required.filter( item => stateForm[item].trim()=="" );
         setCheckRequired(checkRequired);
         if( checkRequired.length==0 ){
-            dispatch( signInAction({ data: stateForm }) );
+            setMsg("");
+            dispatch( signInAction({ data: stateForm }) ).then( res => {
+                console.log(res);
+                const { status=200 } = res;
+                if( status!=200 ){
+                    setMsg("Incorrect account password");
+                }
+            });
+        }else{
+            setMsg("Account password is not empty");
         }
     }
 
@@ -51,7 +61,7 @@ const Form = ({
             <div className="center">
                 <form onSubmit={handleSubmit.bind(this)}>
                     <div className="form-item">
-                        <label>Username:</label>
+                        <label>Email:</label>
                         <div className="input-box" data-error={stateCheckRequired.includes('email')}>
                             <input type="text" name="email" value={email} onChange={handleChange.bind(this)}/>
                         </div>
@@ -62,6 +72,10 @@ const Form = ({
                             <input type="password" name="password" value={password} onChange={handleChange.bind(this)} />
                         </div>
                     </div>
+                    {
+                        stateMsg!="" &&
+                            <div className="form-item error-msg">{stateMsg}</div>
+                    }
                     <div className="form-item">
                         <div className="input-box">
                             <button type="submit">Login</button>
