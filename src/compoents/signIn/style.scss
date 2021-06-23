@@ -1,0 +1,18 @@
+/*
+ *   Copyright (c) 2021 
+ *   All rights reserved.
+ */
+
+.sign-wrap{
+    width: 100%;
+    .center{
+        padding: 80px 0px;
+    }
+
+    form{
+        width: 320px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+    }
+}

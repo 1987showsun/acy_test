@@ -1,0 +1,16 @@
+/*
+ *   Copyright (c) 2021 
+ *   All rights reserved.
+ */
+
+ .registered-row{
+    width: 100%;
+    padding: 80px 30px;
+    &.registered-list{
+        background: #F2F2F2;
+        .center{
+            display: flex;
+            flex-wrap: wrap;
+        }
+    }
+ }

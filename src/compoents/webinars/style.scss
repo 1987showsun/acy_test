@@ -1,0 +1,131 @@
+/*
+ *   Copyright (c) 2021 
+ *   All rights reserved.
+ */
+.webinars-row{
+    width: 100%;
+    padding: 80px 30px;
+    &.posts-head{
+        background: #fff;
+        h1{
+            margin-bottom: 20px;
+            font-weight: 500;
+            font-size: 28px;
+            line-height: 40px;
+            text-align: center;
+            color: #01254F;
+        }
+        p{
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 24px;
+            text-align: center;
+            color: rgba(0, 0, 0, 0.65);
+        }
+        .center{
+            max-width: 800px;
+        }
+    }
+
+    &.posts-list{
+        background: #F2F2F2;
+        .center{
+            display: flex;
+            flex-wrap: wrap;
+        }
+    }
+
+    &.posts-host{
+        .center{
+            display: flex;
+            h3{
+                font-weight: 500;
+                font-size: 22px;
+                line-height: 30px;
+                color: #01254F;
+                margin-bottom: 20px;
+            }
+            p{
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 24px;
+                color: rgba(0, 0, 0, 0.65);
+                margin-bottom: 30px;
+            }
+            a{
+                display: flex;
+                align-items: center;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 24px;
+                color: rgba(0, 0, 0, 0.65);
+                i{
+                    width: 20px;
+                    height: 20px;
+                    margin-left: 5px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+            iframe{
+                width: 100%;
+            }
+            @media (min-width: 769px) {
+                >div{
+                    width: 50%;
+                    margin-right: 120px;
+                    &:last-child{
+                        margin-right: 0px;
+                    }
+                }
+            }
+            @media (max-width: 768px) {
+                flex-wrap: wrap;
+                >div{
+                    width: 100%;
+                    margin-bottom: 30px;
+                    &:last-child{
+                        margin-bottom: 0px;
+                    }
+                }
+            }
+        }
+    }
+
+    &.posts-register{
+        form{
+            padding: 80px 18%;
+            display: flex;
+            background: #fff;
+            flex-direction: column;
+            align-items: center;
+            @media (min-width: 769px) {
+                border: 1px solid #DBDBDB;
+                box-sizing: border-box;
+                box-shadow: 0px 4px 14px rgba(132, 132, 132, 0.5);
+                border-radius: 20px;
+            }
+            @media (max-width: 768px) {
+                padding: 0%;
+            }
+        }
+        h3{
+            margin-bottom: 20px;
+            font-weight: 500;
+            font-size: 22px;
+            line-height: 30px;
+            text-align: center;
+            color: #01254F;
+        }
+        p{
+            max-width: 600px;
+            margin-bottom: 40px;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 24px;
+            text-align: center;
+            color: rgba(0, 0, 0, 0.65);
+        }
+    }
+}

@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+/*
+ *   Copyright (c) 2021 
+ *   All rights reserved.
+ */
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import { connect } from 'react-redux';
+import './index.scss';
+import { Switch, Redirect, Route } from "react-router-dom";
+import routes from './routes';
 
-export default App;
+import Header from './compoents/common/header';
+import Footer from './compoents/common/footer';
+
+const App = ({ token="" }) => {  
+    return(
+      <>
+        <Header
+            token = {token}
+        />
+          <main>
+            <Switch>
+              { routes(token).map((item, i) => <Route key={i} {...item} />) }
+              <Redirect to="/forex_webinars"/>
+            </Switch>
+          </main>
+        <Footer />
+      </>
+    );
+  }
+  
+  const mapStateToProps = state => {
+    return {
+      token: state.account.token
+    }
+  }
+  
+  export default connect(mapStateToProps)(App);
